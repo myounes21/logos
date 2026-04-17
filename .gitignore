@@ -1,14 +1,64 @@
-.venv/
+# -----------------
+# Python / tooling
+# -----------------
 __pycache__/
-*.pyc
+*.py[cod]
+*$py.class
 
+# Virtual environments
+.venv/
+venv/
+env/
+
+# Packaging / build
+build/
+dist/
+*.egg-info/
+.eggs/
+
+# Test / coverage / caches
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.tox/
+.coverage
+coverage.xml
+htmlcov/
+
+# Notebooks
+.ipynb_checkpoints/
+
+# Logs
+*.log
+
+# -----------------
+# PyCharm / JetBrains
+# -----------------
+.idea/
+*.iml
+
+# -----------------
+# Local env files
+# -----------------
 .env
+.env.*
+!.env.example
 
-models/
-data/generated/
+# -----------------
+# Project artifacts / large data (keep out of git)
+# -----------------
+models/*
+!models/.gitkeepdata/generated/
 data/filtered/
 data/grpo/
 
-*.log
-test_model.py
 test.ipynb
+test_model.py
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Torch / HF cache
+.cache/
+huggingface/
