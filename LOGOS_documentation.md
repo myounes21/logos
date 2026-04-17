@@ -483,61 +483,85 @@ Honest tiered reporting is more scientifically credible than cherry-picked aggre
 
 ```
 logos/
-│
-├── data/
-│   ├── raw/                          # Original Arabic problems
-│   │   ├── leetcode_translated.json
-│   │   ├── university_problems.json
-│   │   └── generated_problems.json
-│   ├── generated/                    # R1 traces before filtering
-│   │   └── raw_traces.jsonl
-│   ├── filtered/                     # Quality-filtered dataset
-│   │   ├── train.jsonl               # 80% split
-│   │   └── test.jsonl                # 20% split
-│   └── grpo/                         # Reward models / groups
-│       └── preference_pairs.jsonl
-│
-├── src/
-│   ├── data_generation/
-│   │   ├── generate_traces.py        # Phase 1: R1 trace generation
-│   │   ├── quality_filter.py         # Filtering pipeline
-│   │   └── build_grpo_groups.py      # GRPO dataset construction
-│   │
-│   ├── training/
-│   │   ├── sft_train.py              # Phase 2: QLoRA SFT
-│   │   └── grpo_train.py             # Phase 3: GRPO alignment
-│   │
-│   ├── evaluation/
-│   │   ├── evaluate_correctness.py   # Unit test runner
-│   │   ├── evaluate_reasoning.py     # DeepEval G-Eval scoring
-│   │   ├── adversarial_tests.py      # Stress test suite
-│   │   └── benchmark_latency.py     # TPS measurement
-│   │
-│   └── inference/
-│       └── generate.py               # Clean inference script
-│
-├── notebooks/
-│   ├── 01_data_exploration.ipynb     # Dataset analysis
-│   ├── 02_training_analysis.ipynb    # Loss curves and training dynamics
-│   └── 03_results_analysis.ipynb    # Final evaluation results
-│
-├── configs/
-│   ├── lora_config.yaml
-│   ├── training_config.yaml
-│   └── grpo_config.yaml
-│
-├── models/
-│   ├── sft_checkpoint/               # SFT model weights
-│   ├── grpo_checkpoint/              # GRPO-aligned model weights
-│   └── logos-3b-arabic-code.gguf    # Final quantized model
-│
-├── results/
-│   ├── evaluation_report.json
-│   └── benchmark_results.csv
-│
-├── requirements.txt
+├── LOGOS_documentation.md
 ├── README.md
-└── .env.example                      # API key template
+├── main.py
+├── pyproject.toml
+├── uv.lock
+├── test.ipynb
+├── configs/
+│   ├── grpo_config.yaml
+│   ├── lora_config.yaml
+│   └── training_config.yaml
+├── scripts/
+│   ├── eval.sh
+│   ├── generate.sh
+│   ├── train_grpo.sh
+│   └── train_sft.sh
+├── data/
+│   ├── raw/
+│   ├── generated/
+│   ├── filtered/
+│   └── grpo/
+├── models/
+│   ├── .gitkeep
+│   └── qwen-4bit/
+│       ├── added_tokens.json
+│       ├── config.json
+│       ├── generation_config.json
+│       ├── merges.txt
+│       ├── model.safetensors
+│       ├── README.md
+│       ├── special_tokens_map.json
+│       ├── tokenizer.json
+│       ├── tokenizer_config.json
+│       ├── vocab.json
+│       └── (other HF tokenizer/model files)
+├── notebooks/
+│   ├── 01_data_exploration.ipynb
+│   ├── 02_training_analysis.ipynb
+│   └── 03_results_analysis.ipynb
+├── results/
+│   ├── benchmark_results.csv
+│   └── evaluation_report.json
+├── src/
+│   └── logos/
+│       ├── __init__.py
+│       ├── cli.py
+│       ├── core/
+│       │   ├── __init__.py
+│       │   ├── config.py
+│       │   ├── logging.py
+│       │   └── utils.py
+│       ├── data/
+│       │   ├── __init__.py
+│       │   ├── filter.py
+│       │   ├── generate.py
+│       │   └── grpo.py
+│       ├── evaluation/
+│       │   ├── __init__.py
+│       │   ├── adversarial.py
+│       │   ├── benchmark.py
+│       │   ├── correctness.py
+│       │   └── reasoning.py
+│       ├── inference/
+│       │   ├── __init__.py
+│       │   ├── generate.py
+│       │   └── pipeline.py
+│       └── training/
+│           ├── __init__.py
+│           ├── common/
+│           │   ├── __init__.py
+│           │   └── dataloader.py
+│           ├── sft/
+│           │   ├── __init__.py
+│           │   └── train.py
+│           └── grpo/
+│               ├── __init__.py
+│               ├── rewards.py
+│               └── train.py
+└── test_model.py
+
 ```
 
 ---
