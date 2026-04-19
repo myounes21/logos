@@ -51,8 +51,9 @@ models/*
 !models/.gitkeepdata/generated/
 data/filtered/
 data/grpo/
+data/generated
 
-test.ipynb
+test_notebooks/
 test_model.py
 
 # OS files

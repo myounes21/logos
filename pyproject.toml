@@ -7,7 +7,16 @@ requires-python = ">=3.12"
 dependencies = [
     "accelerate>=1.13.0",
     "bitsandbytes>=0.49.2",
+    "groq>=1.1.2",
     "huggingface-hub>=1.11.0",
+    "ipykernel>=7.2.0",
+    "openai>=2.32.0",
+    "pydantic-settings>=2.13.1",
     "torch>=2.11.0",
     "transformers>=5.5.4",
+]
+
+[dependency-groups]
+dev = [
+    "together>=2.8.0",
 ]
