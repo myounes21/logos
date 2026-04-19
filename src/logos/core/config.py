@@ -10,7 +10,8 @@ if not ENV_PATH.exists():
 class Settings(BaseSettings):
     model_config = SettingsConfigDict(env_file=ENV_PATH, extra="ignore")
 
-    GROQ_API_KEY: str
-    GROQ_LLM_MODEL: str = "deepseek-r1-distill-llama-70b"
+    OPENROUTER_API_KEY: str
+    TEACHER_LLM_MODEL: str = "deepseek/deepseek-r1"
+    OPENROUTER_BASE_URL: str = "https://openrouter.ai/api/v1"
 
 settings = Settings()
