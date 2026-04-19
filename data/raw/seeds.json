@@ -82,10 +82,10 @@
   {
     "instruction": "اكتب دالة تتحقق هل السلسلة النصية متناظرة (palindrome)، مع تجاهل الفراغات وحالة الأحرف.",
     "tests": [
-      ["racecar", True],
-      ["A man a plan a canal Panama", True],
-      ["", True],
-      ["hello", False]
+      ["racecar", true],
+      ["A man a plan a canal Panama", true],
+      ["", true],
+      ["hello", false]
     ],
     "topic": "strings",
     "difficulty": "medium"
@@ -113,9 +113,9 @@
   {
     "instruction": "اكتب دالة تستقبل سلسلة نصية وتُعيد قاموساً بعدد تكرار كل حرف فيها (مع تجاهل الفراغات).",
     "tests": [
-      ["hello", {"h":1,"e":1,"l":2,"o":1}],
+      ["hello", {"h": 1, "e": 1, "l": 2, "o": 1}],
       ["", {}],
-      ["a a", {"a":2}]
+      ["a a", {"a": 2}]
     ],
     "topic": "strings",
     "difficulty": "medium"
@@ -123,10 +123,10 @@
   {
     "instruction": "اكتب دالة تتحقق هل العدد أولي.",
     "tests": [
-      [2, True],
-      [1, False],
-      [17, True],
-      [18, False]
+      [2, true],
+      [1, false],
+      [17, true],
+      [18, false]
     ],
     "topic": "math",
     "difficulty": "medium"
@@ -134,9 +134,9 @@
   {
     "instruction": "اكتب دالة تُعيد العناصر المشتركة بين قائمتين بدون تكرار.",
     "tests": [
-      [[1,2,3],[3,4],[3]],
-      [[1,1,2],[2,2,3],[2]],
-      [[],[1,2],[]]
+      [[1, 2, 3], [3, 4], [3]],
+      [[1, 1, 2], [2, 2, 3], [2]],
+      [[], [1, 2], []]
     ],
     "topic": "arrays",
     "difficulty": "medium"
@@ -154,7 +154,7 @@
   {
     "instruction": "اكتب دالة تُعيد جميع الأعداد الأولية الأصغر من أو تساوي n.",
     "tests": [
-      [10, [2,3,5,7]],
+      [10, [2, 3, 5, 7]],
       [1, []],
       [2, [2]]
     ],
@@ -164,9 +164,9 @@
   {
     "instruction": "اكتب دالة تتحقق إذا كانت القائمة تحتوي على عناصر مكررة.",
     "tests": [
-      [[1,2,3], False],
-      [[1,2,2], True],
-      [[], False]
+      [[1, 2, 3], false],
+      [[1, 2, 2], true],
+      [[], false]
     ],
     "topic": "arrays",
     "difficulty": "easy"
@@ -174,9 +174,9 @@
   {
     "instruction": "اكتب دالة تُعيد ثاني أكبر عنصر مختلف في قائمة.",
     "tests": [
-      [[1,2,3], 2],
-      [[5,5,5], None],
-      [[10], None]
+      [[1, 2, 3], 2],
+      [[5, 5, 5], null],
+      [[10], null]
     ],
     "topic": "arrays",
     "difficulty": "medium"
