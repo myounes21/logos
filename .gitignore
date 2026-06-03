@@ -49,9 +49,9 @@ htmlcov/
 # -----------------
 models/*
 !models/.gitkeepdata/generated/
-data/filtered/
-data/grpo/
-data/generated
+#data/filtered/
+#data/grpo/
+data/
 
 test_notebooks/
 test_model.py

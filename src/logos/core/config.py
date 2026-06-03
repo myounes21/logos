@@ -14,4 +14,6 @@ class Settings(BaseSettings):
     TEACHER_LLM_MODEL: str = "deepseek/deepseek-r1"
     OPENROUTER_BASE_URL: str = "https://openrouter.ai/api/v1"
 
+    student_model_name: str = "Qwen/Qwen2.5-Coder-7B-Instruct"
+
 settings = Settings()
