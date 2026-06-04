@@ -27,7 +27,7 @@
 
 **LOGOS** (Linguistic Optimization via Guided Reasoning from Open-Sro ource) is an end-to-end ML engineering project that addresses a specific and underserved gap: **Arabic programming problem solving with explicit step-by-step reasoning**.
 
-The project distills the internal Chain-of-Thought (CoT) reasoning traces of **DeepSeek-R1** — one of the most capable reasoning models available — into a lightweight **"Qwen/Qwen2.5-Coder-3B-Instruct"** student model. The student is then aligned using **Group Relative Policy Optimization (GRPO)** to prefer high-quality reasoning over logical shortcuts and hallucinations.
+The project distills the internal Chain-of-Thought (CoT) reasoning traces of **DeepSeek-R1** — one of the most capable reasoning models available — into a lightweight **"Qwen/Qwen2.5-Coder-7B-Instruct"** student model. The student is then aligned using **Group Relative Policy Optimization (GRPO)** to prefer high-quality reasoning over logical shortcuts and hallucinations.
 
 The result is a 3-billion parameter model that can:
 - Read a programming problem described in Arabic

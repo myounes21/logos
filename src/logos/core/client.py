@@ -1,4 +1,4 @@
-from src.logos.core.config import settings
+from config import settings
 from openai import OpenAI
 
 
