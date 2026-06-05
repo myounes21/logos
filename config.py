@@ -11,6 +11,9 @@ CHUNKS_DIR = DATA_DIR / "chunks"
 RAW_PATH = DATA_DIR / "raw.jsonl"
 VALIDATED_PATH = DATA_DIR / "validated.jsonl"
 QUALITY_PATH = DATA_DIR / "quality.jsonl"
+R1_PATH = DATA_DIR / "r1.jsonl"
+TRAIN_PATH = DATA_DIR / "train.jsonl"
+TEST_PATH = DATA_DIR / "test.jsonl"
 
 DEFAULT_SPEC_COUNT = 100
 
