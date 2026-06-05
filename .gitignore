@@ -49,7 +49,7 @@ htmlcov/
 # -----------------
 models/*
 !models/.gitkeep
-data/
+/data/
 
 test_notebooks/
 test_model.py
