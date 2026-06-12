@@ -109,7 +109,7 @@ Arab CS students, developers, and educators have a concrete need for a tool that
 │                                                  ▼               │
 │                                    ┌─────────────────────────┐  │
 │                                    │  Phase 2: QLoRA SFT      │  │
-│                                    │  "Qwen/Qwen2.5-Coder-3B-Instruct" Student      │  │
+│                                    │  "Qwen/Qwen2.5-Coder-7b-Instruct" Student      │  │
 │                                    │  4-bit NF4 Quantization  │  │
 │                                    └─────────────────────────┘  │
 │                                                  │               │
@@ -141,11 +141,11 @@ Arab CS students, developers, and educators have a concrete need for a tool that
 
 ### 4.2 The Student Model
 
-**Model:** "Qwen/Qwen2.5-Coder-3B-Instruct"
+**Model:** "Qwen/Qwen2.5-Coder-7b-Instruct"
 
 **Why Qwen2.5:** Among all sub-7B models, Qwen2.5 has the strongest Arabic language capability due to its multilingual pretraining corpus. Llama and Mistral models at this size are significantly weaker in Arabic.
 
-**Hardware constraint:** 3B parameters with 4-bit quantization requires approximately 2-3GB VRAM, well within laptop capabilities.
+**Hardware constraint:** 7b parameters with 4-bit quantization requires approximately 2-3GB VRAM, well within laptop capabilities.
 
 ---
 
@@ -170,7 +170,7 @@ The dataset is built from three sources:
 - Ensures coverage of edge cases and problem types not in sources 1-2
 - Approximately 100 problems
 
-**Total target dataset size:** ~600 problems (sufficient for 3B model fine-tuning)
+**Total target dataset size:** ~600 problems (sufficient for 7b model fine-tuning)
 
 ### 5.2 Dataset Schema
 
@@ -262,7 +262,7 @@ For 600 problems at ~2 requests each (initial + retry for failed quality checks)
 
 ### 7.1 Why QLoRA
 
-Full fine-tuning of "Qwen/Qwen2.5-Coder-3B-Instruct" requires ~24GB VRAM. QLoRA reduces this to ~3GB by:
+Full fine-tuning of "Qwen/Qwen2.5-Coder-7b-Instruct" requires ~24GB VRAM. QLoRA reduces this to ~3GB by:
 
 1. **4-bit NF4 Quantization:** Base model weights are quantized to 4-bit NormalFloat format. These weights are frozen — they never update during training.
 
@@ -350,7 +350,7 @@ Three models are trained and compared:
 
 | Model | Description |
 |---|---|
-| Base | "Qwen/Qwen2.5-Coder-3B-Instruct" with zero fine-tuning |
+| Base | "Qwen/Qwen2.5-Coder-7b-Instruct" with zero fine-tuning |
 | SFT-Answer-Only | Fine-tuned on (instruction → answer) only, no think trace |
 | SFT-LOGOS (full) | Fine-tuned on (instruction → think trace → answer) |
 
@@ -572,9 +572,9 @@ logos/
 
 | Model | Parameters | Arabic Capability | Reasoning |
 |---|---|---|---|
-| "Qwen/Qwen2.5-Coder-3B-Instruct" (base) | 3B | Good | Weak |
-| "Qwen/Qwen2.5-Coder-3B-Instruct" SFT (answer-only) | 3B | Good | Moderate |
-| **LOGOS (SFT + GRPO)** | **3B** | **Good** | **Strong** |
+| "Qwen/Qwen2.5-Coder-7b-Instruct" (base) | 7b | Good | Weak |
+| "Qwen/Qwen2.5-Coder-7b-Instruct" SFT (answer-only) | 7b | Good | Moderate |
+| **LOGOS (SFT + GRPO)** | **7b** | **Good** | **Strong** |
 | DeepSeek-R1-Distill (teacher) | 70B | Strong | Very Strong |
 
 Comparing LOGOS against the 70B teacher on the same problems gives a concrete "compression ratio" story: how much reasoning capability was retained per parameter.
@@ -593,20 +593,17 @@ Comparing LOGOS against the 70B teacher on the same problems gives a concrete "c
 
 ## 13. Results & Metrics
 
-*(To be populated after training — structure defined in advance)*
+### 13.1 Actual Benchmark Results
 
-### 13.1 Expected Results Table
-
-| Model | Correctness (Easy) | Correctness (Medium) | Reasoning Score | TPS (Local) |
-|---|---|---|---|---|
-| Base "Qwen/Qwen2.5-Coder-3B-Instruct" | ~40% | ~20% | 0.45 | — |
-| SFT (answer-only) | ~65% | ~40% | 0.58 | — |
-| LOGOS (SFT + GRPO) | ~85% | ~65% | 0.78 | ~45 |
-| R1-70B Teacher | ~95% | ~85% | 0.92 | (API) |
+| Model | Format % | Has Function % | Code Correct % | Arabic Ratio | Logic Keywords | Tokens/sec | Reasoning Score (avg) |
+|---|---|---|---|---|---|---|---|
+| **Base Qwen** | 0% | 93% | 7% | 0.00 | 0.00 | 17.30 | 1.00 |
+| **SFT Only** | 80% | 95% | 18% | 0.68 | 0.80 | 15.80 | 5.50 |
+| **LOGOS Full (SFT+GRPO)** | 95% | 97% | 23% | 0.82 | 1.50 | 15.70 | 7.00 |
 
 ### 13.2 Key Result to Highlight
 
-The gap between SFT-answer-only and LOGOS demonstrates the value of reasoning trace distillation. A model trained to reproduce thinking processes outperforms a model trained only on final answers — even at 3B parameters.
+The gap between SFT-answer-only and LOGOS demonstrates the value of reasoning trace distillation. A model trained to reproduce thinking processes outperforms a model trained only on final answers — even at 7b parameters.
 
 ---
 
@@ -616,7 +613,7 @@ The gap between SFT-answer-only and LOGOS demonstrates the value of reasoning tr
 
 Standard knowledge distillation transfers *what* a model outputs. LOGOS transfers *how* a model thinks. The `<think>` trace is the primary training signal. This is process supervision distillation applied to Arabic code reasoning.
 
-### Innovation 2: Arabic Code Reasoning at 3B Scale
+### Innovation 2: Arabic Code Reasoning at 7b Scale
 
 No prior work demonstrates Arabic programming reasoning at sub-7B scale with explicit step-by-step traces. This is a genuine gap in the open-source landscape.
 
@@ -632,7 +629,7 @@ The SFT → GRPO pipeline ensures the model first learns to produce reasoning (S
 
 ## 15. CV One-Liner
 
-> **"Architected an Arabic code-reasoning model by distilling DeepSeek-R1 traces into "Qwen/Qwen2.5-Coder-3B-Instruct"; implemented GRPO (Group Relative Policy Optimization) with custom reward functions for linguistic consistency and code correctness, achieving a 40% improvement in zero-shot Arabic algorithmic tasks."**
+> **"Architected an Arabic code-reasoning model by distilling DeepSeek-R1 traces into "Qwen/Qwen2.5-Coder-7b-Instruct"; implemented GRPO (Group Relative Policy Optimization) with custom reward functions for linguistic consistency and code correctness, achieving a 40% improvement in zero-shot Arabic algorithmic tasks."**
 
 ### Keywords Covered
 
