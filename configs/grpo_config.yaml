@@ -1,0 +1,9 @@
+num_generations: 8
+kl_coef: 0.1
+learning_rate: 1e-5
+llm_judge_reward: 2.0
+batch_size: 1
+gradient_accumulation: 4
+max_prompt_length: 512
+max_completion_length: 1024
+bf16: true
