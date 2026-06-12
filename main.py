@@ -1,5 +1,4 @@
-def main():
-    print("Hello from logos!")
+from src.logos.cli import main
 
 
 if __name__ == "__main__":
