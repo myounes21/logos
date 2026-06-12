@@ -1,22 +1,38 @@
 # -----------------
-# Python / tooling
+# Python / Tooling
 # -----------------
 __pycache__/
 *.py[cod]
 *$py.class
+*.so
+.Python
 
 # Virtual environments
 .venv/
 venv/
 env/
+ENV/
 
-# Packaging / build
+# Packaging / Build
 build/
+develop-eggs/
 dist/
-*.egg-info/
+downloads/
+eggs/
 .eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+share/python-wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+MANIFEST
 
-# Test / coverage / caches
+# Test / Coverage / Caches
 .pytest_cache/
 .mypy_cache/
 .ruff_cache/
@@ -24,40 +40,62 @@ dist/
 .coverage
 coverage.xml
 htmlcov/
+nosetests.xml
+coverage.sqlite
 
 # Notebooks
 .ipynb_checkpoints/
-
-# Logs
-*.log
+*.ipynb_checkpoints/
 
 # -----------------
-# PyCharm / JetBrains
+# IDE / OS
 # -----------------
 .idea/
 *.iml
+.vscode/
+*.swp
+*.swo
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
 
 # -----------------
-# Local env files
+# Local Environments
 # -----------------
 .env
 .env.*
 !.env.example
 
 # -----------------
-# Project artifacts / large data (keep out of git)
+# Project Artifacts / Machine Learning
 # -----------------
+# Ignore model checkpoints and weights
 models/*
 !models/.gitkeep
-/data/
 
-test_notebooks/
-test_model.py
+# Ignore training runs, logs, and wandb artifacts
+runs/*
+!runs/.gitkeep
+wandb/
+*.log
 
-# OS files
-.DS_Store
-Thumbs.db
+# Ignore data files (jsonl, csv, etc.) to prevent committing large datasets
+data/*
+!data/.gitkeep
+
+# Ignore results/metrics outputs
+results/*
+!results/.gitkeep
 
 # Torch / HF cache
 .cache/
 huggingface/
+
+# Ignore custom scratch files
+test_notebooks/
+scratch/
+test_model.py
