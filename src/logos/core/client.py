@@ -1,8 +1,12 @@
-from config import settings
-from openai import OpenAI
+from groq import Groq
+
+from src.logos.config import settings
 
 
-client = OpenAI(
-    base_url=settings.OPENROUTER_BASE_URL,
-    api_key=settings.OPENROUTER_API_KEY,
-)
+def build_groq_client() -> Groq:
+    return Groq(
+        api_key=settings.GROQ_API_KEY,
+    )
+
+
+client = build_groq_client()
