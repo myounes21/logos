@@ -5,8 +5,8 @@ from typing import Iterable, List
 
 from openai import OpenAI
 
-from config import CHUNKS_DIR, RAW_PATH, settings
-from logos_dataset.parser import extract_json_objects
+from src.logos.config import CHUNKS_DIR, RAW_PATH, settings
+from src.logos.data.parser import extract_json_objects
 
 
 def _ensure_dirs() -> None:

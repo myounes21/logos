@@ -2,7 +2,7 @@ import json
 import re
 from typing import Dict, Iterable
 
-from config import QUALITY_PATH, VALIDATED_PATH
+from src.logos.config import QUALITY_PATH, VALIDATED_PATH
 
 
 def _ensure_dirs() -> None:

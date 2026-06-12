@@ -1,7 +1,7 @@
 import json
 from typing import Dict, Iterable
 
-from config import RAW_PATH, VALIDATED_PATH
+from src.logos.config import RAW_PATH, VALIDATED_PATH
 
 REQUIRED_FIELDS = [
     "instruction",

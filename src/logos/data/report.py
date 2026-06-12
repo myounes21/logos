@@ -2,7 +2,7 @@ import json
 from collections import Counter
 from typing import Dict, Iterable
 
-from config import QUALITY_PATH, RAW_PATH, VALIDATED_PATH
+from src.logos.config import QUALITY_PATH, RAW_PATH, VALIDATED_PATH
 
 
 def _iter_jsonl(path) -> Iterable[Dict]:

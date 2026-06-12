@@ -2,7 +2,7 @@ import json
 import random
 from typing import Dict, List
 
-from config import QUALITY_PATH, TEST_PATH, TRAIN_PATH
+from src.logos.config import QUALITY_PATH, TEST_PATH, TRAIN_PATH
 
 
 def _ensure_dirs() -> None:

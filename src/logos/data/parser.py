@@ -1,7 +1,7 @@
 import json
 from typing import Iterable, List
 
-from config import CHUNKS_DIR, RAW_PATH
+from src.logos.config import CHUNKS_DIR, RAW_PATH
 
 
 def iter_raw_files() -> Iterable[str]:
