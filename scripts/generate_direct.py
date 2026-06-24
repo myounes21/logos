@@ -1,8 +1,4 @@
 #!/usr/bin/env python3
-"""
-Direct generator for remaining final_generated.jsonl entries.
-Generates think/answer WITHOUT any API calls.
-"""
 
 import json, re, sys
 from pathlib import Path
@@ -47,7 +43,6 @@ def load_done():
 
 
 def extract_func_name(instr):
-    """Extract function name from instruction like `func_name` or func_name."""
     m = re.search(r'`(\w+)`', instr)
     if m:
         return m.group(1)
@@ -57,7 +52,6 @@ def extract_func_name(instr):
     return None
 
 
-# ---- GENERATORS ----
 
 GEN_FUNCS = {}
 
@@ -287,7 +281,6 @@ def gen_subsets_bt(instr, entry):
     return think, answer, entry.get("unit_tests", [])
 
 
-# Generic fallback based on problem_type and topic
 FALLBACK_THINKS = {
     "كتابة دالة": {
         "مؤشرين": "المطلوب كتابة دالة باستخدام تقنية المؤشرات الثنائية. تعتمد هذه التقنية على استخدام مؤشرين يعبران البيانات في وقت واحد، مما يسمح بحل المشكلة في مسافة واحدة وبزمن خطي. الفكرة الأساسية هي ضبط حركة المؤشرين بناء على شرط معين وتحديث النتيجة عند تحقق الشرط المطلوب.",
@@ -328,13 +321,11 @@ def generate_entry(entry):
         think, answer, unit_tests = GEN_FUNCS[key](instr, entry)
         return think, answer, unit_tests
 
-    # Try topic+ptype match
     for (t, s, p), fn in GEN_FUNCS.items():
         if t == topic and p == ptype and s is None:
             think, answer, unit_tests = fn(instr, entry)
             return think, answer, unit_tests
 
-    # Fallback
     think = "المطلوب " + instr.split(".")[0] + ". "
     if ptype in FALLBACK_THINKS:
         topic_thinks = FALLBACK_THINKS[ptype]
@@ -347,7 +338,6 @@ def generate_entry(entry):
     else:
         think += "نستخدم الخوارزمية المناسبة لحل المسألة مع مراعاة الحالات الحدية المهمة."
 
-    # Generate minimal answer
     func = extract_func_name(instr)
     if func:
         answer = f"def {func}(*args):\n    pass"
