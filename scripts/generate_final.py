@@ -1,8 +1,4 @@
 #!/usr/bin/env python3
-"""
-Generate think/answer for remaining raw.jsonl entries using Qwen API.
-Skips entries already in final_generated.jsonl. Resumes via checkpoint.
-"""
 
 import json, sys, time
 from pathlib import Path
