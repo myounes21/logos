@@ -6,7 +6,6 @@ def is_valid_reasoning(think_text):
     if '###' in think_text or '**' in think_text:
         return False
     
-    # Arabic detector (simple check for Arabic characters)
     if not re.search(r'[\u0600-\u06FF]', think_text):
         return False
 
