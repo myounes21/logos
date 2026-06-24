@@ -2,14 +2,12 @@ import json
 import sys
 import os
 
-# Add src to path
 sys.path.append(os.path.join(os.path.dirname(__file__), '..', 'src'))
 from logos.data.filter import is_valid_reasoning
 
 def validate():
     input_file = "data/filtered/train.jsonl" # Path where actual training file exists
     if not os.path.exists(input_file):
-        # Fallback to the one we know
         input_file = "data/chunks/validated_dataset.jsonl"
     
     if not os.path.exists(input_file):
