@@ -36,7 +36,6 @@ for e in entries:
     instruction = e.get("instruction", raw_e.get("instruction", ""))
     unit_tests = raw_e.get("unit_tests", e.get("unit_tests", []))
 
-    # Format unit_tests for human-readable display
     tests_str = json.dumps(unit_tests, ensure_ascii=False)
     test_lines = []
     for t in unit_tests:
