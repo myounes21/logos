@@ -1,4 +1,4 @@
-# LOGOS: Arabic Code-Reasoning Distillation 🧠💻
+# LOGOS: Arabic Code-Reasoning Distillation
 
 ![Python 3.12](https://img.shields.io/badge/python-3.12-blue.svg)
 ![PyTorch](https://img.shields.io/badge/PyTorch-2.0+-ee4c2c.svg)
@@ -9,7 +9,7 @@
 
 ---
 
-## 🎯 Key Features
+## Key Features
 
 - **Teacher Trace Distillation:** Generates high-quality algorithmic reasoning traces (`<think>` blocks) in Arabic using DeepSeek-R1 (via Groq API).
 - **Efficient SFT:** Implements 4-bit QLoRA for accessible local fine-tuning.
@@ -20,7 +20,7 @@
 
 ---
 
-## 📊 Benchmark Results
+## Benchmark Results
 
 | Model | Format % | Has Function % | Code Correct % | Arabic Ratio | Logic Keywords | Tokens/sec | Reasoning Score (1-10) |
 |---|---|---|---|---|---|---|---|
@@ -32,7 +32,7 @@
 
 ---
 
-## 🚀 Quick Start
+## Quick Start
 
 ### 1. Environment Setup
 
@@ -63,7 +63,7 @@ Ensure you have the following keys ready in your `.env` if you plan to use all p
 
 ---
 
-## 📖 End-to-End Workflow
+## End-to-End Workflow
 
 The pipeline is entirely accessible via the unified CLI `src.logos.cli`. For convenience, bash scripts are also provided in the `scripts/` directory.
 
@@ -130,7 +130,7 @@ python scripts/eval_reasoning_qwen.py
 
 ---
 
-## 📂 Project Structure
+## Project Structure
 
 ```text
 logos/
@@ -152,7 +152,7 @@ logos/
 
 ---
 
-## 🛠 Configurations
+## Configurations
 
 All pipeline hyper-parameters are easily adjusted without diving into the code:
 - **SFT Params:** `configs/training_config.yaml`
@@ -161,5 +161,5 @@ All pipeline hyper-parameters are easily adjusted without diving into the code:
 
 ---
 
-## 🛡 License
+## License
 This project is open-sourced under the MIT License.
