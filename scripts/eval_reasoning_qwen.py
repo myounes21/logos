@@ -20,7 +20,7 @@ def get_qwen_client():
 
 def evaluate_reasoning(instruction, expected_answer, think_text, client, model_name):
     if pd.isna(think_text) or str(think_text).strip() == "":
-        return 1.0  # Base score for no reasoning
+        return 1.0
 
     prompt = f"""You are an expert evaluator grading the internal "Chain-of-Thought" (reasoning trace) of an AI model trained to solve coding problems.
 The model was trained to think out loud in Arabic before outputting the final Python code.
@@ -55,7 +55,6 @@ Output ONLY an integer between 1 and 10. No other text or explanation."""
             max_tokens=10
         )
         content = response.choices[0].message.content.strip()
-        # Extract the first integer found in the response
         match = re.search(r'\b([1-9]|10)\b', content)
         if match:
             return float(match.group(1))
@@ -67,12 +66,10 @@ Output ONLY an integer between 1 and 10. No other text or explanation."""
 
 def main():
     print("Loading datasets...")
-    # Load original dataset to get instructions
     dataset = load_dataset("myounes21/logos-reasoning-dataset", split="train")
     split_dataset = dataset.train_test_split(test_size=0.1, seed=42)
     test_dataset = split_dataset['test']
     
-    # Create mapping from Sample_ID to instruction and answer
     id_to_data = {i: {"instruction": ex['instruction'], "answer": ex['answer']} for i, ex in enumerate(test_dataset)}
     
     print("Loading raw results CSV...")
@@ -100,7 +97,6 @@ def main():
         score = evaluate_reasoning(instruction, expected_answer, think_text, client, model_name)
         scores.append(score)
         
-        # Rate limit protection just in case
         time.sleep(0.1)
         
     df['reasoning_score'] = scores
@@ -113,7 +109,6 @@ def main():
     print("=" * 60)
     agg_scores = df.groupby('Model')['reasoning_score'].mean().reset_index()
     
-    # Update logos_results.csv
     try:
         results_df = pd.read_csv("results/logos_results.csv")
         score_map = dict(zip(agg_scores['Model'], agg_scores['reasoning_score']))
