@@ -89,7 +89,6 @@ Output ONLY an integer between 1 and 10. No other text or explanation."""
         content = response.choices[0].message.content.strip()
         match = re.search(r'\b([1-9]|10)\b', content)
         if match:
-            # Normalize the 1-10 score to 0.0 - 1.0
             return float(match.group(1)) / 10.0
         return 0.1
     except Exception:
