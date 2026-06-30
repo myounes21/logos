@@ -40,7 +40,6 @@ def cmd_train_sft(args: argparse.Namespace) -> None:
         data_path=args.data,
         output_dir=args.output,
         training_config_path=args.training_config,
-        lora_config_path=args.lora_config,
     )
     print(f"SFT artifacts saved at {output}")
 
@@ -148,11 +147,11 @@ def build_parser() -> argparse.ArgumentParser:
     prepare_grpo.add_argument("--output", type=Path, default=GRPO_PATH)
     prepare_grpo.set_defaults(func=cmd_prepare_grpo)
 
-    train_sft_parser = subparsers.add_parser("train-sft", help="Run QLoRA SFT training")
+    train_sft_parser = subparsers.add_parser("train-sft", help="Run Full-Weight SFT training")
     train_sft_parser.add_argument("--data", type=Path, default=TRAIN_PATH)
     train_sft_parser.add_argument("--output", type=Path, default=SFT_OUTPUT_DIR)
     train_sft_parser.add_argument("--training-config", type=Path, default=Path("configs/training_config.yaml"))
-    train_sft_parser.add_argument("--lora-config", type=Path, default=Path("configs/lora_config.yaml"))
+    train_sft_parser.add_argument("--lora-config", type=Path, default=None)
     train_sft_parser.set_defaults(func=cmd_train_sft)
 
     train_grpo_parser = subparsers.add_parser("train-grpo", help="Run GRPO training")

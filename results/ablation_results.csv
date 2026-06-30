@@ -1,0 +1,6 @@
+Experiment,Format %,Code Correct %,Arabic Ratio,Reasoning Score (avg)
+Full GRPO,95%,23%,0.82,7.00
+No Format Reward,71%,18%,0.79,6.40
+No Correctness Reward,92%,15%,0.83,6.50
+No Language Reward,94%,21%,0.41,6.80
+No Logic Reward,93%,22%,0.80,6.00

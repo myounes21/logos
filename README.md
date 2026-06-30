@@ -12,7 +12,7 @@
 ## Key Features
 
 - **Teacher Trace Distillation:** Generates high-quality algorithmic reasoning traces (`<think>` blocks) in Arabic using DeepSeek-R1 (via Groq API).
-- **Efficient SFT:** Implements 4-bit QLoRA for accessible local fine-tuning.
+- **Efficient Full-Weight SFT:** Establishes a strong supervised baseline before alignment.
 - **Advanced GRPO Alignment:** Aligns the model using custom Arabic-aware reward functions (Correctness, Format, Language, Logic) and a dynamic **LLM-as-a-Judge** reward powered by Qwen API inside the training loop!
 - **Dataset Management:** Streamlined utilities to push processed datasets directly to the Hugging Face Hub.
 - **Robust Evaluation Suite:** Evaluates models on logic parsing, code correctness, and adversarial traps designed specifically for Arabic coders.
@@ -25,10 +25,13 @@
 | Model | Format % | Has Function % | Code Correct % | Arabic Ratio | Logic Keywords | Tokens/sec | Reasoning Score (1-10) |
 |---|---|---|---|---|---|---|---|
 | **Base Qwen** | 0% | 93% | 7% | 0.00 | 0.00 | 17.30 | 1.00 |
-| **SFT Only** | 80% | 95% | 18% | 0.68 | 0.80 | 15.80 | 5.50 |
+| **SFT Only** | 80% | 95% | 16% | 0.68 | 0.80 | 15.80 | 5.50 |
 | **LOGOS Full (SFT+GRPO)** | 95% | 97% | 23% | 0.82 | 1.50 | 15.70 | 7.00 |
 
 *Note: LOGOS achieves a **3x increase** in code correctness and a **7x increase** in Arabic reasoning scores compared to the base model!*
+
+### Ablation Study
+We ablated the four reward functions individually, finding the **language-consistency reward** contributed most to Arabic fluency while the **correctness reward** drove the largest accuracy gains. See `results/ablation_results.csv` for full details.
 
 ---
 
@@ -81,8 +84,7 @@ Fine-tune the base `Qwen2.5-Coder` model using the teacher's traces.
 python -m src.logos.cli train-sft \
   --data data/r1.jsonl \
   --output models/sft \
-  --training-config configs/training_config.yaml \
-  --lora-config configs/lora_config.yaml
+  --training-config configs/training_config.yaml
 ```
 
 ### Step 3: GRPO Alignment

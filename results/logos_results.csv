@@ -1,0 +1,4 @@
+Model,Format %,Has Function %,Code Correct %,Arabic Ratio,Logic Keywords (avg),Tokens/sec,Reasoning Score (avg) out of 10
+Base Qwen,0%,93%,7%,0.00,0.00,17.30,1.00
+SFT Only,80%,95%,16%,0.68,0.80,15.80,5.50
+LOGOS Full (SFT+GRPO),95%,97%,23%,0.82,1.50,15.70,7.00
